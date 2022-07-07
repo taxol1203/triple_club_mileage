@@ -1,18 +1,9 @@
 package com.triple.clubMileage.Repository;
 
 import com.triple.clubMileage.domain.Photo;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.persistence.EntityManager;
+import java.util.UUID;
 
-@Repository
-@RequiredArgsConstructor
-public class PhotoRepository {
-
-    private final EntityManager em;
-
-    public void save(Photo photo){
-        em.persist(photo);
-    }
+public interface PhotoRepository extends JpaRepository<Photo, UUID> {
 }

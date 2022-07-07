@@ -1,19 +1,9 @@
 package com.triple.clubMileage.Repository;
 
 import com.triple.clubMileage.domain.Review;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.persistence.EntityManager;
+import java.util.UUID;
 
-@Repository
-@RequiredArgsConstructor
-public class ReviewRepository {
-    private final EntityManager em;
-
-    public void save(Review review) {
-        em.persist(review);
-    }
-
-
+public interface ReviewRepository extends JpaRepository<Review, UUID> {
 }

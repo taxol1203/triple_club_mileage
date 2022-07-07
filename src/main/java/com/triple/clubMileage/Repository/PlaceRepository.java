@@ -1,19 +1,9 @@
 package com.triple.clubMileage.Repository;
 
 import com.triple.clubMileage.domain.Place;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.persistence.EntityManager;
+import java.util.UUID;
 
-@Repository
-@RequiredArgsConstructor
-public class PlaceRepository {
-
-    private final EntityManager em;
-
-    public void save(Place place){
-        em.persist(place);
-    }
-
+public interface PlaceRepository extends JpaRepository<Place, UUID> {
 }

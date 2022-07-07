@@ -42,4 +42,14 @@ public class Review {
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
     private List<Photo> photoList = new ArrayList<>();
+
+    //==연관관계 메서드==//
+    public void setUser(User user) {
+        this.user = user;
+        user.getReviewList().add(this);
+    }
+
+    public void setPlace(Place place) {
+
+    }
 }

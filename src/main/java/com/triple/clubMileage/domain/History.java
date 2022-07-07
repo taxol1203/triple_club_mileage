@@ -11,8 +11,7 @@ import java.util.UUID;
 @Entity
 @Getter @Setter
 public class History {
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     @Column(name = "history_id")
     private Long id;
 
