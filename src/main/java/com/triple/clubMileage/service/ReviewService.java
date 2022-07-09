@@ -1,16 +1,12 @@
 package com.triple.clubMileage.service;
 
-import com.triple.clubMileage.Repository.PhotoRepository;
-import com.triple.clubMileage.Repository.PlaceRepository;
 import com.triple.clubMileage.Repository.ReviewRepository;
-import com.triple.clubMileage.Repository.UserRepository;
 import com.triple.clubMileage.api.RandomStringGenerator;
 import com.triple.clubMileage.domain.Photo;
 import com.triple.clubMileage.domain.Place;
 import com.triple.clubMileage.domain.Review;
 import com.triple.clubMileage.domain.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -132,6 +128,14 @@ public class ReviewService {
         return point;
     }
 
+    /**
+     * 리뷰 수정
+     *
+     * @param reviewId
+     * @param content
+     * @param userId
+     * @param photoIds
+     */
     @Transactional
     public void updateReview(String reviewId, String content, String userId, List<String> photoIds){
         User user = userService.getUser(userId);
