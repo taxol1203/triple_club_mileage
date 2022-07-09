@@ -3,6 +3,7 @@ package com.triple.clubMileage.service;
 import com.triple.clubMileage.Repository.PlaceRepository;
 import com.triple.clubMileage.domain.Place;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -13,7 +14,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class PlaceService {
 
-    PlaceRepository placeRepository;
+    private final PlaceRepository placeRepository;
 
     public Place getPlace(String placeId){
         Optional<Place> placeOptional = placeRepository.findById(UUID.fromString(placeId));

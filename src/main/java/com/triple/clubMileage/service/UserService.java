@@ -3,6 +3,7 @@ package com.triple.clubMileage.service;
 import com.triple.clubMileage.Repository.UserRepository;
 import com.triple.clubMileage.domain.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -13,7 +14,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserService {
 
-    UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public User getUser(String userId) {
         Optional<User> userOptional = userRepository.findById(UUID.fromString(userId));

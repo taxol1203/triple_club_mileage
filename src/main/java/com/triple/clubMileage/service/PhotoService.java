@@ -13,7 +13,7 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class PhotoService {
-    PhotoRepository photoRepository;
+    private final PhotoRepository photoRepository;
 
     @Transactional
     public UUID savePhoto(String photoId){

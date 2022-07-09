@@ -22,20 +22,19 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ReviewService {
 
-    ReviewRepository reviewRepository;
-    UserService userService;
-    PlaceService placeService;
-    PhotoService photoService;
+    private final ReviewRepository reviewRepository;
+    private final UserService userService;
+    private final PlaceService placeService;
+    private final PhotoService photoService;
 
-    @Transactional
     public List<Review> getReviewByPlace(Place place){
         Optional<List<Review>> reviewList = reviewRepository.findByPlace(place);
         return reviewList.orElse(null);
     }
 
-    @Transactional
     public UUID saveReview(String reviewId, String content, String userId, String placeId, List<String> photoIds) {
 
         User user = userService.getUser(userId);
@@ -46,11 +45,29 @@ public class ReviewService {
             Photo photo = Photo.createPhoto(photoId, RandomStringGenerator.getRandomString(15));
             photoList.add(photo);
         }
-        boolean isFirst = getReviewByPlace(place) == null;
+
+        boolean isFirst = getReviewByPlace(place).isEmpty();
 
         Review review = Review.creativeReview(reviewId, user, place, content, isFirst, photoList);
         reviewRepository.save(review);
 
         return review.getId();
+    }
+
+
+    public Review getReview(String reviewId){
+        Optional<Review> reviewOptional = reviewRepository.findById(UUID.fromString(reviewId));
+        Review review;
+        if(reviewOptional.isPresent()){
+            review = reviewOptional.get();
+        } else {
+            throw new EntityNotFoundException(
+                    "Cant find any review under given reviewId");
+        }
+        return review;
+    }
+
+    public void deleteReview(String reviewId){
+        reviewRepository.deleteById(UUID.fromString(reviewId));
     }
 }

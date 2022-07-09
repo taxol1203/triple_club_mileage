@@ -14,14 +14,21 @@ import java.util.UUID;
 public class Place {
 
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", name = "place_id")
     private UUID id;
 
     private String name;
     private int review_count;
 
-    @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "place")
     private List<Review> reviewList = new ArrayList<>();
+
+    //==생성 메서드==//
+    public Place createPlace(UUID placeId, String placeName, int count){
+        Place place = new Place();
+        place.setId(placeId);
+        place.setName(placeName);
+        place.setReview_count(count);
+        return place;
+    }
 }
