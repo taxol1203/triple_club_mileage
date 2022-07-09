@@ -41,4 +41,21 @@ public class UserService {
         // 포인트 변경 내역 저장
         historyService.saveHistory(user, calPoint);
     }
+
+    /**
+     * 한 사람의 포인트를 가져온다.
+     *
+     * @param userId 유저 id
+     * @return point
+     */
+    @Transactional
+    public int getPoint(String userId){
+        User user = getUser(userId);
+        return user.getPoint();
+    }
+
+    public void saveUser(String gotID, String name, int point) {
+        User user = new User().createUser(UUID.fromString(gotID), name, point);
+        userRepository.saveAndFlush(user);
+    }
 }
