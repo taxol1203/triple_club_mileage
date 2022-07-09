@@ -36,7 +36,7 @@ public class PointTest {
         String userId = user.getId().toString();
         //when
 
-        int point = userService.getPoint(userId);
+        int point = (int) userService.getPoint(userId).getBody();
         //then
         assertEquals(point, user.getPoint());
     }
@@ -56,7 +56,7 @@ public class PointTest {
         historyService.saveHistory(user, 2);
         historyService.saveHistory(user, 2);
         //when
-        List<History> historyList = historyService.getHistoryList(user);
+        List<History> historyList = (List<History>) historyService.getHistoryList(user).getBody();
         //then
         assertEquals(3, historyList.size());
     }
@@ -66,9 +66,9 @@ public class PointTest {
         //given
 
         //when
-        List<History> historyList = historyService.getAllHistoryList();
+        List<History> historyList = (List<History>) historyService.getAllHistoryList().getBody();
         //then
-        assertEquals(4, historyList.size());
+        assertEquals(7, historyList.size());
     }
 
     private User createUser(){

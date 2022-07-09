@@ -4,6 +4,8 @@ import com.triple.clubMileage.Repository.UserRepository;
 import com.triple.clubMileage.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,9 +51,14 @@ public class UserService {
      * @return point
      */
     @Transactional
-    public int getPoint(String userId){
-        User user = getUser(userId);
-        return user.getPoint();
+    public ResponseEntity<?> getPoint(String userId){
+        User user = null;
+        try {
+            user = getUser(userId);
+        } catch (EntityNotFoundException e){
+            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(user.getPoint(), HttpStatus.OK);
     }
 
     public void saveUser(String gotID, String name, int point) {
