@@ -33,16 +33,16 @@ class ReviewServiceTest {
         //given
         //Place place = new Place().createPlace(UUID.fromString("2e4baf1c-5acb-4efb-a1af-eddada31b00f"), "Busan", 0);
         //User user = new User().createUser(UUID.fromString("3ede0ef2-92b7-4817-a5f3-0c575361f745"), "r")
-        String gotID = "240a0658-dc5f-4878-9381-ebb7b2667772";
-        reviewService.deleteReview(gotID);
+        String gotID = "240a0658-dc5f-4878-9381-ebb7b2667774";
+        //reviewService.deleteReview(gotID);
 
         Place place = placeService.getPlace("2e4baf1c-5acb-4efb-a1af-eddada31b00a");
         User user = userService.getUser("3ede0ef2-92b7-4817-a5f3-0c575361f745");
         String content = "hi everyone!!!!!33333";
 
         List<String> photoList = new ArrayList<>();
-        photoList.add("e4d1a64e-a531-46de-88d0-ff0ed70c0bb9");
-        photoList.add("afb0cef2-851d-4a50-bb07-9cc15cbdc333");
+        photoList.add("e4d1a64e-a531-46de-88d0-ff0ed70c0bc3");
+        photoList.add("afb0cef2-851d-4a50-bb07-9cc15cbdc343");
 
         //when
         UUID reviewId = reviewService.saveReview(gotID, content, user.getId().toString(), place.getId().toString(), photoList);
