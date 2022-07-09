@@ -14,17 +14,25 @@ import java.util.UUID;
 public class User {
 
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", name = "user_id")
     private UUID id;
 
     private String name;
     private int point;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     private List<History> historyList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     private List<Review> reviewList = new ArrayList<>();
+
+    //==생성 메서드==//
+    public User createUser(UUID userId, String userName, int p){
+        User user = new User();
+        user.setId(userId);
+        user.setName(userName);
+        user.setPoint(p);
+
+        return user;
+    }
 }
