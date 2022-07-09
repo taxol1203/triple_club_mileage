@@ -25,14 +25,18 @@
   : 비즈니스 로직의 단위 테스트를 위해 사용하였습니다.
 
 ## Database
-Mysql을 사용하였습니다.
-JPA을 사용하여, 추가로 DDL을 사용하지 않더라도 테이블들과 관계가 설정됩니다.
+Mysql을 사용하였습니다.  
+JPA을 사용하여, 추가로 DDL을 사용하지 않더라도 테이블들과 관계가 설정됩니다.  
+루트 하위의 sql 폴더 내부의 `ddl.sql`를 참고 부탁드리겠습니다.
 
 하지만 초기 세팅을 위해 사용자(User)와 장소(Place)는 데이터 입력이 필요합니다.
-해당하는 내용은 `ddl.sql`에 담았습니다.
+해당하는 내용은 `init.sql`에 담았습니다.
+
+### ERD Diagram
+<img src="/sql/triple.png" width="100%" height="100%">
 
 ## Test
-먼저 `ddl.sql`의 사용자(User)와 장소(Place) `Insert`를 부탁드리겠습니다.
+먼저 `init.sql`의 사용자(User)와 장소(Place) `Insert`를 부탁드리겠습니다.
 
 `Swagger Api`를 사용하여 테스트 하도록 구축하였습니다.
 
